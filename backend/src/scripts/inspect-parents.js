@@ -1,0 +1,1 @@
+import "dotenv/config"; import mongoose from "mongoose"; import connectDB from "../config/database.js"; import User from "../models/User.js"; connectDB().then(() => User.find({ role: "parent" })).then(parents => { console.log("--- Parents Found ---", parents); process.exit(0); });

@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 25% 96%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 247 88% 62%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 247 88% 62%;
+    --radius: 1.5rem;
+    --sidebar: 231 39% 7%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-border: 232 35% 14%;
+    --sidebar-accent: 247 88% 62%;
+    --sidebar-accent-foreground: 210 40% 98%;
+
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+    --color-border: #e2e8f0;
+    --bg-card: #ffffff;
+    --bg-main: #f8fafc;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 247 88% 66%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 222 47% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 247 88% 66%;
+    --sidebar: 231 39% 4%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-border: 232 35% 10%;
+    --sidebar-accent: 247 88% 66%;
+    --sidebar-accent-foreground: 210 40% 98%;
+
+    --color-text-main: #f8fafc;
+    --color-text-muted: #94a3b8;
+    --color-border: #1e293b;
+    --bg-card: #0f172a;
+    --bg-main: #020617;
+  }
+
+  .dark body {
+    color: #f8fafc;
+    background-color: #020617;
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  .dark select option {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+  }
+
+  .dark label {
+    color: #e2e8f0;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground; }
+}
+
+@layer components {
+  /* ERP Layout */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-semibold tracking-wide transition-all duration-150 cursor-pointer select-none;
+    @apply text-sidebar-foreground/75 hover:bg-white/5 hover:text-white;
+  }
+  .sidebar-link.active {
+    @apply bg-[#5F4BF2] text-white shadow-md shadow-[#5F4BF2]/20 font-bold;
+  }
+  .sidebar-link .link-icon {
+    @apply w-5 h-5 flex-shrink-0;
+  }
+
+  /* Stats Cards */
+  .stat-card {
+    @apply bg-card rounded-xl border border-border p-6 shadow-soft hover:shadow-card transition-shadow duration-200;
+  }
+
+  /* Data Table */
+  .data-table th {
+    @apply bg-muted/50 text-muted-foreground text-xs font-semibold uppercase tracking-wider px-4 py-3;
+  }
+  .data-table td {
+    @apply px-4 py-3.5 text-sm border-b border-border/50 transition-colors;
+  }
+  .data-table tr:hover td {
+    @apply bg-muted/30;
+  }
+
+  /* Form inputs */
+  .erp-input {
+    @apply flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background;
+    @apply placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1;
+    @apply disabled:cursor-not-allowed disabled:opacity-50 transition-colors;
+  }
+
+  /* Page header */
+  .page-header {
+    @apply mb-6;
+  }
+  .page-title {
+    @apply text-2xl font-bold text-foreground font-display;
+  }
+  .page-subtitle {
+    @apply text-muted-foreground text-sm mt-1;
+  }
+
+  /* Badge */
+  .erp-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors;
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/70 dark:bg-card/70 backdrop-blur-sm border border-white/20 dark:border-border/50 rounded-xl shadow-soft;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .text-balance { text-wrap: balance; }
+}
